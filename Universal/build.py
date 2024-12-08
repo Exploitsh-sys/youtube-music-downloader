@@ -4,19 +4,18 @@ import requests
 from yt_dlp import YoutubeDL
 from pystyle import Colors, Colorate, Center, Write
 
-# Chemin des téléchargements et URL de mise à jour
-OUTPUT_PATH = "downloads"
-UPDATE_URL = "https://raw.githubusercontent.com/username/repo/main/script.py"  # Remplacez par l'URL de votre script GitHub
 
-# Vérifie si FFmpeg est installé
+OUTPUT_PATH = "downloads"
+UPDATE_URL = "https://github.com/Exploitsh-sys/youtube-music-downloader/blob/main/Universal/build.py"  
+
+
 def check_ffmpeg():
     try:
         subprocess.run(["ffmpeg", "-version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return True
     except FileNotFoundError:
         return False
-
-# Télécharge la mise à jour du script depuis GitHub
+        
 def check_update():
     print(Colorate.Horizontal(Colors.blue_to_white, "\n🔄 Vérification des mises à jour...\n"))
     try:
@@ -32,7 +31,7 @@ def check_update():
     except Exception as e:
         print(Colorate.Horizontal(Colors.red_to_white, f"❌ Erreur lors de la vérification ou du téléchargement : {e}\n"))
 
-# Fonction pour afficher le titre ASCII
+
 def display_title():
     title = """
 ██╗   ██╗███╗   ██╗██╗██╗   ██╗███████╗██████╗ ███████╗ █████╗ ██╗        [ Version: Beta  ]   
@@ -45,11 +44,11 @@ def display_title():
     """
     print(Colorate.Horizontal(Colors.blue_to_white, Center.XCenter(title)))
 
-# Efface la console
+
 def clear_console():
     os.system("cls" if os.name == "nt" else "clear")
 
-# Télécharge uniquement l'audio
+
 def download_audio(video_url, quality="best"):
     try:
         os.makedirs(OUTPUT_PATH, exist_ok=True)
@@ -70,7 +69,7 @@ def download_audio(video_url, quality="best"):
     except Exception as e:
         print(Colorate.Horizontal(Colors.red_to_white, f"❌ Erreur : {e}\n"))
 
-# Télécharge la vidéo complète
+
 def download_video(video_url):
     if not check_ffmpeg():
         print(Colorate.Horizontal(Colors.red_to_white, "\n❌ FFmpeg n'est pas installé. Veuillez l'installer pour télécharger des vidéos.\n"))
@@ -93,7 +92,7 @@ def download_video(video_url):
     except Exception as e:
         print(Colorate.Horizontal(Colors.red_to_white, f"❌ Erreur : {e}\n"))
 
-# Menu principal
+
 def main():
     quality = "best"
 
